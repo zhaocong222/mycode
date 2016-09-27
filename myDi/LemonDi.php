@@ -7,7 +7,7 @@
  */
 namespace myDi;
 
-class LemonDi extends Reflect implements \ArrayAccess,ServerProiver
+class LemonDi extends Reflect implements \ArrayAccess
 {
     //注册树
     protected $register;
@@ -25,13 +25,15 @@ class LemonDi extends Reflect implements \ArrayAccess,ServerProiver
         $container = null;
         if (isset($this[$class]))
             $container = $this[$class];
-        
+
         if ($flag && $obj = $this->register->get($class)){
             return $obj;
         }
 
-        if ($this->isBuild($container)){
+        if ($this->isCallBack($container)){
             $obj = call_user_func($container,$this);
+        } else if(is_object($container)){
+            $obj = $container;
         } else {
             $obj = $this->build($class,$args);
         }
@@ -47,7 +49,7 @@ class LemonDi extends Reflect implements \ArrayAccess,ServerProiver
         return $this->make($class,$args = [],true);
     }
 
-    protected function isBuild($container)
+    protected function isCallBack($container)
     {
         return !empty($container) && $container instanceof \Closure;
     }
@@ -83,9 +85,11 @@ class LemonDi extends Reflect implements \ArrayAccess,ServerProiver
     /*
      * 注册接口
      */
-    public function register($class)
+    public function register(ServerProiver $class)
     {
+        $class->register($this);
 
+        return $this;
     }
 
     public function strtolower($class)

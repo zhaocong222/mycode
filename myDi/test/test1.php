@@ -43,6 +43,7 @@ $Di['A'] = function($c){
 
 $A = $Di->make('A');
 print $A->getinfo();
+exit();
 
 //取出上次实例化的
 $A1 = $Di->make('A');

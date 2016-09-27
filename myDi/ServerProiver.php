@@ -6,8 +6,9 @@
  * Time: 下午3:23
  */
 namespace myDi;
+use myDi\LemonDi as Di;
 
 interface ServerProiver
 {
-    public function register($class);
+    public function register(Di $di);
 }

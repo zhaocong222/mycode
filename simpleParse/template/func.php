@@ -17,8 +17,7 @@ class func implements \ArrayAccess
 
     public function offsetSet($offset, $value)
     {
-        if (is_callable($value) && ($value instanceof \Closure))
-            $this->funcs[$offset] = $value;
+        $this->funcs[$offset] = $value;
     }
 
     public function offsetExists($offset)

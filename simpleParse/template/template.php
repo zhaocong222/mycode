@@ -56,8 +56,7 @@ class template
 
             return $content;
 
-        }catch (\LogicException $e)
-        {
+        }catch (\LogicException $e) {
             if (ob_get_length() > 0) {
                 ob_end_clean();
             }

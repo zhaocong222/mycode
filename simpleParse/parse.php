@@ -27,7 +27,8 @@ class parse
 
     public function registerFunction($name,$callback)
     {
-        if (!(is_callable($callback) && $callback instanceof \Closure))
+
+        if (!is_callable($callback))
             throw new \Exception('$callback must be a function');
 
         $this->func[$name] = $callback;

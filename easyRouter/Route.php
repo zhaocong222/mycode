@@ -90,8 +90,7 @@ class Route
             $last = '';
 
             foreach ($this->regex[$ruleUri] as $key=>$pattern){
-
-
+                
                 if ($posx == $count-1)
                     $last = '$';
 

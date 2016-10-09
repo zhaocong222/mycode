@@ -30,7 +30,7 @@ Router::get('/user/{id}/{name}',function($id,$name){
 
 
 Router::get('/user/{name?}',function($name = null){
-    echo $name;
+    var_dump($name);
 });
 
 

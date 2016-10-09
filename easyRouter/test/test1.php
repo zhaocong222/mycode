@@ -29,10 +29,5 @@ Router::get('/user/{id}/{name}',function($id,$name){
 ]);
 
 
-Router::get('/user/{name?}',function($name = null){
-    var_dump($name);
-});
-
-
 
 Router::dispatch();
